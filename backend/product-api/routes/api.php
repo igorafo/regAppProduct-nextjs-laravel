@@ -27,6 +27,6 @@ Route::middleware('jwt.auth')->group(function () {
     Route::post('/products', [ProductController::class, 'store']);
 });
 
-Route::middleware('jwt-auth')->group(function() {
+Route::middleware('jwt.auth')->group(function() {
     Route::get('/products', [ProductController::class , 'index']);
 });
