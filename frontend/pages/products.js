@@ -30,6 +30,10 @@ export default function Products() {
         }
     };
 
+    const handleShowProducts = () => {
+        router.push('show-products');
+    }
+
     return (
         <div className="min-h-screen p-8 bg-gray-100">
             <form onSubmit={handleSubmit} className="max-w-md mx-auto bg-white p-6 rounded shadow-md">
@@ -75,6 +79,12 @@ export default function Products() {
                     Save Product
                 </button>
             </form>
+
+            <button
+                onClick={handleShowProducts}
+                className='mt-4 w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600'>
+                    Show Products
+            </button>
         </div>
     );
 }
