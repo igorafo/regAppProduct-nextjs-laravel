@@ -30,7 +30,7 @@ class ProductController extends Controller
 
         //\Log::info('Incoming request data:', $request->all());
 
-        $request->validate([
+        $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'string',
             'price' => 'decimal:2',
@@ -42,5 +42,13 @@ class ProductController extends Controller
         $product->update($request->all());
         
         return response()->json($product);
+    }
+
+    public function delete(Product $product){
+        $product->delete();
+
+        return response()->json([
+            'message' => 'Product deleted successfully',
+        ], 200);
     }
 }

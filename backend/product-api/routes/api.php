@@ -32,3 +32,5 @@ Route::middleware('jwt.auth')->group(function() {
 });
 
 Route::put('/products/{id}', [ProductController::class, 'update']) ->middleware('jwt.auth');
+
+Route::delete('/products/{product}', [ProductController::class, 'delete'])->middleware('jwt.auth');

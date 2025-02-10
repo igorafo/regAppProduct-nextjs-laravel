@@ -124,6 +124,23 @@ export default function ShowProducts() {
         fetchProducts();
     }
 
+    const handleDelete = async (id) => {
+        if (window.confirm('Are you sure you want to delete this product?')) {
+            try {
+                const token = localStorage.getItem('token');
+                await axios.delete(`http://localhost:8000/api/products/${id}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                alert('Product deleted successfully!');
+                fetchProducts(); // Refresh the product list
+            } catch (error) {
+                console.error('Error deleting the product: ', error);
+                alert('Failed to delete the product. Try again.');
+            }
+        }
+    };
 
     return(
         <div className='min-h-screen p-8 bg-gray-100'>
@@ -151,6 +168,9 @@ export default function ShowProducts() {
                                 <button onClick={() => setSelectedProducts(product)}
                                     className='bg-blue-500 text-white px-2 py-1 rounded'>
                                         Edit
+                                </button>
+                                <button onClick={() => handleDelete(product.id)} className='bg-red-500 text-white px-2 py-1 rounded ml-2'>
+                                    Delete
                                 </button>
                             </td>                            
                         </tr>
