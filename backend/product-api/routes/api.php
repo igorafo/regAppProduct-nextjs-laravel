@@ -30,3 +30,5 @@ Route::middleware('jwt.auth')->group(function () {
 Route::middleware('jwt.auth')->group(function() {
     Route::get('/products', [ProductController::class , 'index']);
 });
+
+Route::put('/products/{id}', [ProductController::class, 'update']) ->middleware('jwt.auth');

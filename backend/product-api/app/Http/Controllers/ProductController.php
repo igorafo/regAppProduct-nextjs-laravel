@@ -25,4 +25,22 @@ class ProductController extends Controller
             'products' => Product::all()
         ]);
     }
+
+    public function update(Request $request, $id) {
+
+        //\Log::info('Incoming request data:', $request->all());
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'string',
+            'price' => 'decimal:2',
+            'available' => 'boolean'
+        ]);
+
+        $product = Product::find($id);
+
+        $product->update($request->all());
+        
+        return response()->json($product);
+    }
 }
